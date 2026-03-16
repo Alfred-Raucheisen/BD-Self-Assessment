@@ -296,7 +296,7 @@ function rp(){
       lastDim=dimId;
     }
 
-    html+=`<div class="q-card${sel!==null?' done':''}" style="${sel!==null?'border-color:'+dim.color.replace('var(',''').replace(')','')+'33':''}">`
+    html+=`<div class="q-card${sel!==null?' done':''}" style="${sel!==null?'border-left:3px solid '+dim.color:''}">`
       +`<div class="q-num" style="color:${dim.color}">${dim.label} · Frage ${qi+1}</div>`
       +`<div class="q-text">${q}</div>`
       +`<div class="likert">`
