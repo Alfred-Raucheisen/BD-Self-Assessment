@@ -176,6 +176,8 @@
     <h2 id="resultName" style="font-family:'Playfair Display',serif;font-size:32px;color:var(--navy);margin-bottom:4px"></h2>
     <div class="results-meta" id="resultMeta"></div>
     <div class="score-cards" id="scoreCards"></div>
+    <div id="interpretation" style="margin-bottom:32px"></div>
+    <div id="topFlop" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px"></div>
     <div id="dimSections"></div>
     <div class="raw-section">
       <button class="raw-toggle" onclick="toggleRaw()">Rohdaten anzeigen</button>
@@ -372,7 +374,86 @@ function renderCoachResults(decoded){
     +'</div>'
   ).join('');
 
-  // Dimension detail sections
+  // ── INTERPRETATION ──────────────────────────────────────────────────────────
+  const rep=dimScores.find(d=>d.id==='rep');
+  const rel=dimScores.find(d=>d.id==='rel');
+  const rev=dimScores.find(d=>d.id==='rev');
+  const kanz=dimScores.find(d=>d.id==='kanz');
+
+  const repPct=rep.pct, relPct=rel.pct, revPct=rev.pct, kanzPct=kanz.pct;
+
+  const hints=[];
+
+  // Pattern detection
+  if(repPct>=70&&revPct<=45)
+    hints.push({icon:'👁',title:'Sichtbarkeit ohne Akquisition',text:'Starke Reputation, aber der Schritt zur aktiven Mandatsgewinnung fehlt. Typisches Muster bei Anwälten, die gut vernetzt sind aber selten explizit fragen. Ansatz: Gesprächsanlässe aus Sichtbarkeitsaktivitäten ableiten — wer einen Artikel liest, ist ein Grund für einen Anruf.'});
+
+  if(relPct>=70&&repPct<=45)
+    hints.push({icon:'🤝',title:'Netzwerker ohne Positionierung',text:'Viele gute Beziehungen, aber keine klare thematische Positionierung nach aussen. Niemand weiss wirklich wofür dieser Anwalt steht. Ansatz: 2–3 Kernthemen definieren und konsequent kommunizieren.'});
+
+  if(revPct>=70&&relPct<=45)
+    hints.push({icon:'🎯',title:'Transaktionaler Abschlussjäger',text:'Gut im Abschliessen, aber schwache Beziehungspflege gefährdet die langfristige Pipeline. Mandate kommen, aber Mandanten bleiben nicht. Ansatz: Von transaktionalen zu relationalen BD-Aktivitäten verschieben.'});
+
+  if(repPct<=40&&relPct<=40&&revPct<=40)
+    hints.push({icon:'🌱',title:'BD-Einsteiger mit klarem Entwicklungspotenzial',text:'Alle drei Dimensionen zeigen Entwicklungsbedarf — das ist eine ehrliche Selbsteinschätzung und ein guter Ausgangspunkt. Ansatz: Priorität setzen, nicht alles auf einmal. Empfehlung: Mit Relationship beginnen, da am direktesten umsetzbar.'});
+
+  if(Math.max(repPct,relPct,revPct)-Math.min(repPct,relPct,revPct)<=15&&repPct>=55)
+    hints.push({icon:'⚖️',title:'Ausgewogenes BD-Profil',text:'Alle drei Dimensionen auf ähnlichem Niveau — das ist selten und wertvoll. Kein offensichtliches Ungleichgewicht. Ansatz: Tiefenanalyse der Einzelfragen um versteckte Schwachstellen zu finden.'});
+
+  if(repPct>=55&&relPct>=55&&revPct<=40)
+    hints.push({icon:'🔄',title:'Starke Basis, schwache Konversion',text:'Gute Sichtbarkeit und gutes Netzwerk, aber die Umwandlung in Mandate gelingt nicht systematisch. Ansatz: Konkrete BD-Prozesse einführen — wer fragt, bekommt. Der Schritt von Beziehung zu Mandat braucht einen bewussten Trigger.'});
+
+  if(kanzPct<=40)
+    hints.push({icon:'🏛',title:'Einzelkämpfer-Modus',text:'Kanzlei-Ressourcen werden kaum genutzt, BD läuft isoliert. Dabei ist internes Vernetzen einer der günstigsten BD-Hebel. Ansatz: Cross-selling-Gespräche mit 2–3 Partnerkollegen initiieren.'});
+
+  // Discrepancy within dimensions
+  dimScores.forEach(d=>{
+    const scores=d.qs.map(q=>q.a||0).filter(s=>s>0);
+    if(scores.length<2) return;
+    const mx=Math.max(...scores), mn=Math.min(...scores);
+    if(mx-mn>=3)
+      hints.push({icon:'📊',title:`Grosse Diskrepanz in ${d.label}`,text:`Spannbreite von ${mn} bis ${mx} — einzelne Aktivitäten laufen sehr gut, andere kaum. Das zeigt kein Wissensproblem sondern ein Konsistenz- und Gewohnheitsproblem. Ansatz: Die schwachen Punkte explizit in den Wochenrhythmus einbauen.`});
+  });
+
+  document.getElementById('interpretation').innerHTML = hints.length===0
+    ? ''
+    : `<div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 26px">
+        <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:18px">Coach-Interpretationen</h3>`
+      + hints.map(h=>
+        `<div style="display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid var(--border)">`
+        +`<span style="font-size:20px;flex-shrink:0;margin-top:1px">${h.icon}</span>`
+        +`<div><div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px">${h.title}</div>`
+        +`<div style="font-size:13px;color:var(--muted);line-height:1.6">${h.text}</div></div></div>`
+      ).join('')
+      + '</div>';
+
+  // ── TOP / FLOP ───────────────────────────────────────────────────────────────
+  const allQ=ALL_Q.map((q,i)=>({...q,a:ans[i]||0,dim:DIMS.find(d=>d.id===q.dimId)}));
+
+  function buildList(targetScores, fallbackScores, title, color, icon){
+    let items=allQ.filter(q=>targetScores.includes(q.a));
+    if(items.length<3){
+      const extra=allQ.filter(q=>fallbackScores.includes(q.a)&&!items.includes(q));
+      items=[...items,...extra].slice(0,Math.max(items.length,3));
+    }
+    if(items.length===0) return '';
+    return `<div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 18px">`
+      +`<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:${color};margin-bottom:12px">${icon} ${title}</div>`
+      +items.map(q=>
+        `<div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:0.5px solid var(--border)">`
+        +`<span style="font-size:10px;font-weight:600;padding:2px 6px;border-radius:10px;background:${q.dim.light};color:${q.dim.color};flex-shrink:0;margin-top:1px">${q.dim.label}</span>`
+        +`<span style="font-size:12px;color:var(--navy);flex:1;line-height:1.4">${q.q}</span>`
+        +`<span style="font-size:12px;font-weight:700;color:${color};flex-shrink:0">${q.a}</span>`
+        +'</div>'
+      ).join('')
+      +'</div>';
+  }
+
+  document.getElementById('topFlop').innerHTML=
+    buildList([5],[4],'Stärken','var(--green)','💪')
+    + buildList([1],[2],'Entwicklungsfelder','var(--red)','🎯');
+
+  // ── DIMENSION DETAILS ────────────────────────────────────────────────────────
   document.getElementById('dimSections').innerHTML=dimScores.map(d=>
     `<div class="dim-section">`
     +`<h3><span class="dim-dot" style="background:${d.color}"></span>${d.label} — ${d.total}/${d.max}</h3>`
