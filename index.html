@@ -106,22 +106,30 @@
     <p>Wo stehen Sie heute in Ihrem Business Development? Eine ehrliche Standortbestimmung in drei Dimensionen.</p>
   </div>
   <div class="container intro-body">
+    <!-- Kanzlei-Kontext Hinweis -->
+    <div style="background:rgba(200,168,75,0.1);border:1px solid rgba(200,168,75,0.35);border-radius:12px;padding:16px 20px;margin-bottom:20px;margin-top:28px;display:flex;gap:14px;align-items:flex-start">
+      <div style="font-size:20px;flex-shrink:0">🏛</div>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:3px">5 Einstiegsfragen zum Kanzlei-Kontext</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.5">Diese Fragen fliessen nicht in Ihren persönlichen BD-Score ein — sie zeigen, welchen Rückenwind Ihnen Ihre Kanzlei bietet.</div>
+      </div>
+    </div>
     <div class="dim-cards">
       <div class="dim-card" style="background:rgba(26,39,68,0.07);border:1px solid rgba(26,39,68,0.15)">
-        <div class="dc-num" style="color:var(--navy)">9</div>
+        <div class="dc-num" style="color:var(--navy)">10</div>
         <p style="color:var(--navy)"><strong>Reputation</strong><br>Sichtbarkeit & Positionierung</p>
       </div>
       <div class="dim-card" style="background:rgba(46,117,182,0.07);border:1px solid rgba(46,117,182,0.2)">
-        <div class="dc-num" style="color:var(--blue)">10</div>
+        <div class="dc-num" style="color:var(--blue)">12</div>
         <p style="color:var(--blue)"><strong>Relationship</strong><br>Netzwerk & Beziehungspflege</p>
       </div>
       <div class="dim-card" style="background:rgba(200,168,75,0.1);border:1px solid rgba(200,168,75,0.3)">
-        <div class="dc-num" style="color:#8a6f1a">10</div>
+        <div class="dc-num" style="color:#8a6f1a">13</div>
         <p style="color:#8a6f1a"><strong>Revenue</strong><br>Mandate & Abschlüsse</p>
       </div>
     </div>
     <div class="dim-card" style="background:rgba(74,85,104,0.07);border:1px solid rgba(74,85,104,0.2);border-radius:12px;padding:16px 14px;margin-bottom:24px;display:flex;align-items:center;gap:16px">
-      <div style="font-size:24px;font-family:'Playfair Display',serif;color:#4a5568;font-weight:700;min-width:32px">3</div>
+      <div style="font-size:24px;font-family:'Playfair Display',serif;color:#4a5568;font-weight:700;min-width:32px">4</div>
       <div><strong style="color:#4a5568">Kanzlei-Koordination</strong><br><span style="font-size:12px;color:var(--muted)">Zusammenarbeit & interne BD-Ressourcen</span></div>
     </div>
     <div class="scale-box">
@@ -194,55 +202,73 @@ const SVC='service_yw6gsbd', TPL='template_eexvopa';
 
 const DIMS = [
   {
+    id:'kanzlei', label:'Kanzlei-Kontext', color:'var(--gold)', light:'rgba(200,168,75,0.08)', border:'rgba(200,168,75,0.3)',
+    kontext: true, // kein Score
+    questions:[
+      "Meinem erweiterten beruflichen und privaten Umfeld ist der Name unserer Kanzlei geläufig.",
+      "Die relevanten Zielgruppen kennen das Leistungsportfolio und die Qualität unserer Kanzlei.",
+      "Meine Kanzlei investiert genug personelle und finanzielle Ressourcen in einen professionellen Marktauftritt.",
+      "Von der starken Marke meiner Kanzlei fühle ich mich in der Akquisition bestens unterstützt.",
+      "Die Qualität und Frequenz unserer Kanzlei-Events tragen enorm zu unserem BD-Erfolg bei.",
+    ]
+  },
+  {
     id:'rep', label:'Reputation', color:'var(--rep)', light:'rgba(26,39,68,0.07)', border:'rgba(26,39,68,0.2)',
     questions:[
       "Ich habe ein klares Bild davon, wie ich von Mandanten und Kollegen wahrgenommen werde.",
       "Ich bin in meinen Fachgebieten als Experte bekannt — über meine eigene Kanzlei hinaus.",
       "Ich werde regelmässig von Journalisten, Verbänden oder Konferenzveranstaltern angefragt.",
       "Ich publiziere Fachartikel, Beiträge oder Kommentare in relevanten Medien.",
+      "Meine Publikationen werden nicht nur von Anwaltskollegen gelesen, sondern auch von Ziel-Mandanten.",
       "Ich halte regelmässig Vorträge an Konferenzen, Events oder in Ausbildungsprogrammen.",
-      "Mein Profil auf Kanzlei-Website und LinkedIn spiegelt meine Expertise präzise und aktuell wider.",
-      "Ich erhalte Empfehlungen von Kollegen, die meine Expertise gezielt weiterempfehlen.",
-      "Ich nehme aktiv an Verbänden, Arbeitsgruppen oder Netzwerkorganisationen teil.",
-      "Potenzielle Mandanten kennen meinen Namen, bevor wir uns das erste Mal begegnen.",
+      "Mein LinkedIn-Profil ist aktuell und spiegelt meine Expertise klar wider.",
+      "Ich bin in relevanten Fachverbänden oder Branchenorganisationen aktiv engagiert.",
+      "Mandanten empfehlen mich aktiv weiter.",
+      "Ich habe eine klare Positionierung — ich weiss, wofür ich stehe und wofür nicht.",
     ]
   },
   {
     id:'rel', label:'Relationship', color:'var(--rel)', light:'rgba(46,117,182,0.07)', border:'rgba(46,117,182,0.2)',
     questions:[
-      "Ich habe einen klaren Überblick über meine wichtigsten Mandanten- und Kontaktbeziehungen.",
-      "Ich pflege meine bestehenden Mandantenbeziehungen auch ausserhalb von aktiven Mandaten.",
-      "Ich investiere regelmässig Zeit in den Aufbau neuer Beziehungen zu potenziellen Mandanten.",
-      "Ich kenne die geschäftlichen und persönlichen Prioritäten meiner wichtigsten Mandanten.",
-      "Ich nehme mir bewusst Zeit für persönliche Gespräche — Mittagessen, Kaffee, Events.",
-      "Ich spreche Mandanten aktiv auf neue Themen und Entwicklungen an, die sie betreffen könnten.",
-      "Ich nutze mein internes Kanzleinetzwerk, um Mandanten mit anderen Kollegen zu vernetzen.",
-      "Ich erhalte regelmässig Empfehlungen von bestehenden Mandanten und Kontakten.",
-      "Ich pflege Beziehungen zu Intermediären (Banken, Notare, Treuhänder, andere Anwälte).",
-      "Mein Netzwerk wächst aktiv — ich kenne heute mehr relevante Kontakte als vor einem Jahr.",
+      "Ich pflege regelmässig einen informellen Austausch mit meinen Mandanten (Lunch, Apéro, Social Events).",
+      "Ich kenne die strategischen Ziele und Herausforderungen meiner wichtigsten Mandanten.",
+      "Ich pflege Kontakte zu ehemaligen Mandanten aktiv, auch wenn kein Mandat besteht.",
+      "Ich baue systematisch neue Kontakte auf — nicht nur wenn ich sie brauche.",
+      "Ich nutze gesellschaftliche, kulturelle oder sportliche Engagements bewusst für Networking.",
+      "Ich weiss, wer in meinem Netzwerk wen kennt — und nutze diese Verbindungen aktiv.",
+      "Ich pflege Beziehungen zu ehemaligen Mandanten und Kollegen langfristig.",
+      "Es fällt mir leicht, mit fremden Menschen und potenziellen Mandanten ins Gespräch zu kommen.",
+      "Wenn ich im Markt einen neuen Ziel-Mandanten identifiziere, kann ich den Erstkontakt kaum erwarten.",
+      "Ich bereite Mandantengespräche strategisch vor — mit klaren Zielen und Nachfass-Plan.",
+      "Ich nutze digitale Kanäle (LinkedIn, Newsletter, Events) zur Beziehungspflege.",
+      "Meine Mandantenbeziehungen sind breit genug — ich bin nicht von 1–2 Mandanten abhängig.",
     ]
   },
   {
     id:'rev', label:'Revenue', color:'var(--rev)', light:'rgba(200,168,75,0.08)', border:'rgba(200,168,75,0.3)',
     questions:[
-      "Ich habe einen klaren Prozess, um aus Kontakten Mandanten zu machen.",
-      "Ich erkenne Mandatschancen frühzeitig — noch bevor ein Mandat offiziell erteilt wird.",
-      "Ich spreche bestehende Mandanten aktiv auf mögliche weitere Mandate an.",
-      "Ich bin in der Lage, den Wert meiner Leistungen klar und überzeugend zu kommunizieren.",
-      "Ich beteilige mich aktiv an Offertprozessen und Pitches für neue Mandate.",
-      "Ich habe BD-Ziele für das laufende Jahr — und verfolge meinen Fortschritt aktiv.",
-      "Ich kenne meinen persönlichen Beitrag zum Umsatz der Kanzlei.",
-      "Ich plane BD-Aktivitäten voraus — sie sind fester Bestandteil meines Wochenrhythmus.",
-      "Ich führe Feedbackgespräche nach gewonnenen und verlorenen Pitches durch.",
-      "Mein BD-Engagement hat in den letzten 12 Monaten messbar zu neuen Mandaten geführt.",
+      "Ich erkenne BD-Chancen frühzeitig — bevor ein Mandat endet oder ein Bedarf entsteht.",
+      "Ich spreche aktiv auf Zusatzmandate oder verwandte Rechtsgebiete bei bestehenden Mandanten an.",
+      "Ich weiss genau, welche Ziel-Mandanten im Markt zu mir und meinen Kompetenzen passen.",
+      "Ich weiss, wie ich neue Mandanten gezielt anspreche und ein erstes Meeting initiiere.",
+      "Ich kann den Mehrwert meiner Leistung klar und überzeugend kommunizieren.",
+      "Für meine wichtigsten Ziel-Mandanten habe ich individuelle Akquisitionspläne — mit klarem Timing und konkreten nächsten Schritten.",
+      "Ich habe konkrete BD-Ziele für das aktuelle Jahr — und messe meinen Fortschritt.",
+      "Meine BD-Pläne setze ich gern und mit Freude in die Tat um.",
+      "Ich schreibe Angebote und Pitches, die auf den Mandanten zugeschnitten sind.",
+      "Ich nutze jede Mandatsbeziehung auch als Chance, die Kanzlei breiter zu positionieren.",
+      "Bei Honorar- und Vertragsverhandlungen kann ich meine Konditionen in der Regel durchsetzen.",
+      "Bei meinen Mandanten hole ich regelmässig Feedback zur Qualität meiner Leistungen ab.",
+      "Meine Mandanten stellen sich gerne als Referenz (z.B. in Directories, Rankings) zur Verfügung.",
     ]
   },
   {
     id:'kanz', label:'Kanzlei-Koordination', color:'var(--kanz)', light:'rgba(74,85,104,0.07)', border:'rgba(74,85,104,0.2)',
     questions:[
-      "Ich koordiniere BD-Aktivitäten aktiv mit meinen Partnerkollegen.",
+      "Ich teile BD-relevante Informationen proaktiv mit meinen Partnerkollegen.",
       "Ich bringe Mandantenkontakte gezielt in andere Practice Groups der Kanzlei ein.",
       "Ich nutze die Ressourcen der Kanzlei (Marketing, Events, Publikationen) aktiv für mein BD.",
+      "Ich arbeite bei der Akquisition aktiv mit anderen Kollegen oder Teams zusammen.",
     ]
   }
 ];
@@ -292,9 +318,12 @@ function rp(){
 
     // Dimension header when dim changes
     if(dimId!==lastDim){
+      const isKontext = dim.kontext;
       html+=`<div class="dim-badge" style="background:${dim.light};border:1px solid ${dim.border};color:${dim.color}">`
         +`<span style="width:8px;height:8px;border-radius:50%;background:${dim.color};display:inline-block"></span>`
-        +dim.label+'</div>';
+        +dim.label
+        +(isKontext ? ' <span style="font-size:10px;opacity:0.7;margin-left:4px">· kein persönlicher Score</span>' : '')
+        +'</div>';
       lastDim=dimId;
     }
 
@@ -340,7 +369,8 @@ function doSubmit(){
     const qs=ALL_Q.map((q,i)=>({...q,a:answers[i]})).filter(q=>q.dimId===d.id);
     const total=qs.reduce((s,q)=>s+(q.a||0),0);
     const max=qs.length*5;
-    return `${d.label}: ${total}/${max} (${Math.round(total/max*100)}%)`;
+    const label=d.kontext ? `${d.label} (Kontext, kein pers. Score)` : d.label;
+    return `${label}: ${total}/${max} (${Math.round(total/max*100)}%)`;
   }).join('\n');
 
   showScreen('confirmation');
@@ -356,7 +386,7 @@ function renderCoachResults(decoded){
   document.getElementById('resultName').textContent=name||'Auswertung';
   document.getElementById('resultMeta').textContent=(date||'')+' · BD Self-Assessment';
 
-  // Score cards
+  // Score cards — Kanzlei-Kontext separat, nicht in Gesamt-Score
   const dimScores=DIMS.map(d=>{
     const qs=ALL_Q.map((q,i)=>({...q,a:ans[i]})).filter(q=>q.dimId===d.id);
     const total=qs.reduce((s,q)=>s+(q.a||0),0);
@@ -365,20 +395,33 @@ function renderCoachResults(decoded){
     return{...d,total,max,pct,qs};
   });
 
-  document.getElementById('scoreCards').innerHTML=dimScores.map(d=>
-    `<div class="score-card" style="background:${d.light};border:1px solid ${d.border}">`
-    +`<div class="sc-label" style="color:${d.color}">${d.label}</div>`
-    +`<div class="sc-val" style="color:${d.color}">${d.total}</div>`
-    +`<div class="sc-max" style="color:${d.color}">von ${d.max} (${d.pct}%)</div>`
-    +`<div class="sc-bar"><div class="sc-fill" style="width:${d.pct}%"></div></div>`
-    +'</div>'
-  ).join('');
+  // Kanzlei-Kontext separat anzeigen
+  const kanzleiKontext = dimScores.find(d=>d.id==='kanzlei');
+  const scoreDims = dimScores.filter(d=>!d.kontext);
+
+  document.getElementById('scoreCards').innerHTML=
+    // Kanzlei-Kontext Box zuerst (gold, kein "persönlicher Score")
+    (kanzleiKontext ? `<div class="score-card" style="grid-column:1/-1;background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.3)">`
+      +`<div class="sc-label" style="color:var(--gold)">🏛 Kanzlei-Kontext — Rückenwind-Index</div>`
+      +`<div class="sc-val" style="color:var(--gold)">${kanzleiKontext.total}</div>`
+      +`<div class="sc-max" style="color:var(--gold)">von ${kanzleiKontext.max} (${kanzleiKontext.pct}%) · fliesst nicht in persönlichen Score ein</div>`
+      +`<div class="sc-bar"><div class="sc-fill" style="width:${kanzleiKontext.pct}%;background:var(--gold)"></div></div>`
+      +'</div>' : '')
+    // Persönliche Score-Dimensionen
+    + scoreDims.map(d=>
+      `<div class="score-card" style="background:${d.light};border:1px solid ${d.border}">`
+      +`<div class="sc-label" style="color:${d.color}">${d.label}</div>`
+      +`<div class="sc-val" style="color:${d.color}">${d.total}</div>`
+      +`<div class="sc-max" style="color:${d.color}">von ${d.max} (${d.pct}%)</div>`
+      +`<div class="sc-bar"><div class="sc-fill" style="width:${d.pct}%"></div></div>`
+      +'</div>'
+    ).join('');
 
   // ── INTERPRETATION ──────────────────────────────────────────────────────────
-  const rep=dimScores.find(d=>d.id==='rep');
-  const rel=dimScores.find(d=>d.id==='rel');
-  const rev=dimScores.find(d=>d.id==='rev');
-  const kanz=dimScores.find(d=>d.id==='kanz');
+  const rep=scoreDims.find(d=>d.id==='rep');
+  const rel=scoreDims.find(d=>d.id==='rel');
+  const rev=scoreDims.find(d=>d.id==='rev');
+  const kanz=scoreDims.find(d=>d.id==='kanz');
 
   const repPct=rep.pct, relPct=rel.pct, revPct=rev.pct, kanzPct=kanz.pct;
 
@@ -454,7 +497,7 @@ function renderCoachResults(decoded){
     + buildList([1],[2],'Entwicklungsfelder','var(--red)','🎯');
 
   // ── DIMENSION DETAILS ────────────────────────────────────────────────────────
-  document.getElementById('dimSections').innerHTML=dimScores.map(d=>
+  document.getElementById('dimSections').innerHTML=scoreDims.map(d=>
     `<div class="dim-section">`
     +`<h3><span class="dim-dot" style="background:${d.color}"></span>${d.label} — ${d.total}/${d.max}</h3>`
     +d.qs.map((q,qi)=>{
@@ -471,10 +514,13 @@ function renderCoachResults(decoded){
     +'</div>'
   ).join('');
 
-  document.getElementById('rawData').textContent=dimScores.map(d=>
-    d.label+': '+d.total+'/'+d.max+'\n'+
-    d.qs.map((q,qi)=>`  ${qi+1}. ${q.q.slice(0,50)}…: ${q.a||'–'}`).join('\n')
-  ).join('\n\n');
+  document.getElementById('rawData').textContent=
+    (kanzleiKontext ? 'Kanzlei-Kontext (kein pers. Score): '+kanzleiKontext.total+'/'+kanzleiKontext.max+'\n'
+      +kanzleiKontext.qs.map((q,qi)=>`  ${qi+1}. ${q.q.slice(0,50)}…: ${q.a||'–'}`).join('\n')+'\n\n' : '')
+    +scoreDims.map(d=>
+      d.label+': '+d.total+'/'+d.max+'\n'+
+      d.qs.map((q,qi)=>`  ${qi+1}. ${q.q.slice(0,50)}…: ${q.a||'–'}`).join('\n')
+    ).join('\n\n');
 }
 
 function toggleRaw(){const el=document.getElementById('rawData');el.style.display=el.style.display==='block'?'none':'block';}
