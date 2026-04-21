@@ -289,7 +289,17 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
-function startQuiz(){showScreen('quiz');rp();}
+function startQuiz(){
+  const name=document.getElementById('nameInput').value.trim();
+  if(!name){
+    const el=document.getElementById('nameInput');
+    el.style.borderColor='#C0392B';
+    el.placeholder='Bitte Name eintragen';
+    el.focus();
+    return;
+  }
+  showScreen('quiz');rp();
+}
 
 function getDimColor(dimId){return DIMS.find(d=>d.id===dimId)?.color||'var(--navy)';}
 function getDimLight(dimId){return DIMS.find(d=>d.id===dimId)?.light||'var(--light)';}
