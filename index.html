@@ -4,25 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BD Self-Assessment</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--navy:#1a2744;--gold:#C8A84B;--cream:#FAF8F4;--light:#EEF3FA;--border:#D4DDF0;--muted:#6b7a99;--blue:#2E75B6;--green:#1E6B3C;--card:#FFFFFF;--red:#c0392b;--rep:#1a2744;--rel:#2E75B6;--rev:#C8A84B;--kanz:#4a5568;}
+  :root{--navy:#2d5a3d;--gold:#C8A84B;--cream:#faf8f4;--light:#f1f4ee;--border:#e0dcd2;--muted:#6b6b65;--blue:#2E75B6;--green:#1E6B3C;--card:#FFFFFF;--red:#c0392b;--rep:#2d5a3d;--rel:#2E75B6;--rev:#C8A84B;--kanz:#4a5568;}
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;}
+  body{font-family:'Jost', sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;}
   .container{max-width:820px;margin:0 auto;padding:0 24px;}
   .screen{display:none;}.screen.active{display:block;}
   .hero{background:var(--navy);padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden;}
   .hero::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(200,168,75,0.12);}
   .hero::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;border-radius:50%;background:rgba(46,117,182,0.15);}
   .hero .kicker{color:var(--gold);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;display:block;margin-bottom:12px;position:relative;z-index:1;}
-  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,48px);color:white;line-height:1.1;position:relative;z-index:1;}
+  .hero h1{font-family:'Cormorant Garamond', serif;font-size:clamp(30px,5vw,48px);color:white;line-height:1.1;position:relative;z-index:1;}
   .hero h1 em{font-style:italic;color:var(--gold);}
   .hero p{color:rgba(255,255,255,0.72);font-size:15px;font-weight:300;margin-top:14px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.6;position:relative;z-index:1;}
   #intro{padding-bottom:60px;}
   .intro-body{padding:36px 0 0;}
   .dim-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
   .dim-card{border-radius:12px;padding:16px 14px;text-align:center;}
-  .dim-card .dc-num{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:4px;}
+  .dim-card .dc-num{font-family:'Cormorant Garamond', serif;font-size:26px;margin-bottom:4px;}
   .dim-card p{font-size:12px;line-height:1.4;}
   .scale-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:24px;}
   .scale-box h3{font-size:12px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;}
@@ -32,9 +32,9 @@
   .sn.g{background:var(--gold);}
   .name-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px;}
   .name-field label{display:block;font-size:11px;font-weight:500;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;}
-  .name-field input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--navy);background:var(--card);transition:border-color 0.2s;}
+  .name-field input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Jost', sans-serif;font-size:15px;color:var(--navy);background:var(--card);transition:border-color 0.2s;}
   .name-field input:focus{outline:none;border-color:var(--gold);}
-  .btn-primary{background:var(--navy);color:white;border:none;border-radius:12px;padding:16px 48px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:500;cursor:pointer;transition:all 0.2s;}
+  .btn-primary{background:var(--navy);color:white;border:none;border-radius:12px;padding:16px 48px;font-family:'Jost', sans-serif;font-size:16px;font-weight:500;cursor:pointer;transition:all 0.2s;}
   .btn-primary:hover{background:var(--blue);transform:translateY(-1px);}
   #quiz{padding:32px 0 80px;}
   .progress-bar{height:3px;background:var(--border);border-radius:2px;margin-bottom:4px;overflow:hidden;}
@@ -50,12 +50,12 @@
   .lk-end{font-size:11px;color:var(--muted);min-width:80px;line-height:1.3;}
   .lk-end.r{text-align:right;}
   .lk-btns{display:flex;gap:5px;flex:1;justify-content:center;}
-  .lk-btn{width:44px;height:38px;border:1.5px solid var(--border);border-radius:9px;background:transparent;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;}
+  .lk-btn{width:44px;height:38px;border:1.5px solid var(--border);border-radius:9px;background:transparent;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.15s;font-family:'Jost', sans-serif;}
   .lk-btn:hover{border-color:var(--gold);color:var(--gold);}
   .lk-btn.sel{color:white;}
   .page-warn{display:none;background:#fdecea;border:1px solid #f5c6cb;border-radius:10px;padding:12px 16px;margin-bottom:14px;font-size:13px;color:var(--red);line-height:1.6;}
   .quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:20px;}
-  .btn-nav{padding:12px 28px;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:15px;cursor:pointer;transition:all 0.2s;font-weight:500;}
+  .btn-nav{padding:12px 28px;border-radius:10px;font-family:'Jost', sans-serif;font-size:15px;cursor:pointer;transition:all 0.2s;font-weight:500;}
   .btn-prev{background:transparent;border:1.5px solid var(--border);color:var(--muted);}
   .btn-prev:hover{border-color:var(--gold);color:var(--gold);}
   .btn-next{background:var(--navy);border:none;color:white;}
@@ -65,7 +65,7 @@
   #confirmation{padding:80px 0;}
   .conf-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:48px 40px;text-align:center;max-width:520px;margin:0 auto;}
   .conf-icon{width:64px;height:64px;background:rgba(30,107,60,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 24px;}
-  .conf-card h2{font-family:'Playfair Display',serif;font-size:28px;color:var(--navy);margin-bottom:12px;}
+  .conf-card h2{font-family:'Cormorant Garamond', serif;font-size:28px;color:var(--navy);margin-bottom:12px;}
   .conf-card p{color:var(--muted);font-size:15px;line-height:1.65;margin-bottom:8px;}
   .conf-status{display:inline-block;margin-top:20px;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:500;}
   .conf-status.sending{background:var(--light);color:var(--muted);}
@@ -77,12 +77,12 @@
   .score-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px;}
   .score-card{border-radius:14px;padding:18px 16px;text-align:center;}
   .score-card .sc-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
-  .score-card .sc-val{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;line-height:1;}
+  .score-card .sc-val{font-family:'Cormorant Garamond', serif;font-size:36px;font-weight:700;line-height:1;}
   .score-card .sc-max{font-size:12px;margin-top:4px;opacity:0.7;}
   .score-card .sc-bar{height:4px;border-radius:2px;margin-top:10px;background:rgba(255,255,255,0.3);overflow:hidden;}
   .score-card .sc-fill{height:100%;border-radius:2px;background:rgba(255,255,255,0.8);}
   .dim-section{margin-bottom:28px;}
-  .dim-section h3{font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+  .dim-section h3{font-family:'Cormorant Garamond', serif;font-size:18px;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
   .dim-dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
   .q-result-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:0.5px solid var(--border);font-size:13px;}
   .q-result-text{flex:1;color:var(--navy);line-height:1.4;}
@@ -92,7 +92,7 @@
   .raw-section{margin-top:24px;}
   .raw-toggle{background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;text-decoration:underline;}
   .raw-data{font-family:monospace;font-size:11px;color:var(--muted);background:var(--light);border-radius:8px;padding:14px 16px;margin-top:10px;line-height:1.9;display:none;max-height:320px;overflow-y:auto;}
-  .btn-restart{display:inline-block;margin-top:24px;background:transparent;border:1.5px solid var(--border);color:var(--muted);border-radius:10px;padding:12px 28px;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;transition:all 0.2s;}
+  .btn-restart{display:inline-block;margin-top:24px;background:transparent;border:1.5px solid var(--border);color:var(--muted);border-radius:10px;padding:12px 28px;font-family:'Jost', sans-serif;font-size:14px;cursor:pointer;transition:all 0.2s;}
   .btn-restart:hover{border-color:var(--gold);color:var(--gold);}
   @media(max-width:580px){.dim-cards,.score-cards{grid-template-columns:1fr 1fr;}.name-row{grid-template-columns:1fr;}.lk-btn{width:38px;height:34px;font-size:13px;}}
 </style>
@@ -114,7 +114,7 @@
       </div>
     </div>
     <div class="dim-cards">
-      <div class="dim-card" style="background:rgba(26,39,68,0.07);border:1px solid rgba(26,39,68,0.15)">
+      <div class="dim-card" style="background:rgba(45,90,61,0.07);border:1px solid rgba(45,90,61,0.15)">
         <div class="dc-num" style="color:var(--navy)">10</div>
         <p style="color:var(--navy)"><strong>Reputation</strong><br>Sichtbarkeit & Positionierung</p>
       </div>
@@ -128,7 +128,7 @@
       </div>
     </div>
     <div class="dim-card" style="background:rgba(74,85,104,0.07);border:1px solid rgba(74,85,104,0.2);border-radius:12px;padding:16px 14px;margin-bottom:24px;display:flex;align-items:center;gap:16px">
-      <div style="font-size:24px;font-family:'Playfair Display',serif;color:#4a5568;font-weight:700;min-width:32px">4</div>
+      <div style="font-size:24px;font-family:'Cormorant Garamond', serif;color:#4a5568;font-weight:700;min-width:32px">4</div>
       <div><strong style="color:#4a5568">Kanzlei-Koordination</strong><br><span style="font-size:12px;color:var(--muted)">Zusammenarbeit & interne BD-Ressourcen</span></div>
     </div>
     <div class="scale-box">
@@ -180,11 +180,15 @@
 <div id="results" class="screen">
   <div class="hero"><span class="kicker">Coach-Auswertung</span><h1>BD <em>Self-Assessment</em></h1></div>
   <div class="container results-body">
-    <h2 id="resultName" style="font-family:'Playfair Display',serif;font-size:32px;color:var(--navy);margin-bottom:4px"></h2>
+    <h2 id="resultName" style="font-family:'Cormorant Garamond', serif;font-size:32px;color:var(--navy);margin-bottom:4px"></h2>
     <div class="results-meta" id="resultMeta"></div>
-    <div class="score-cards" id="scoreCards"></div>
-    <div id="interpretation" style="margin-bottom:32px"></div>
+    <div id="diffBlock" style="margin-bottom:28px"></div>
     <div id="topFlop" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px"></div>
+    <div id="interpretation" style="margin-bottom:32px"></div>
+    <details style="margin-bottom:28px">
+      <summary style="cursor:pointer;font-size:13px;color:var(--muted);font-weight:500;padding:6px 0">Dimensions-Scores anzeigen (Kontext · siehe Hinweis oben)</summary>
+      <div class="score-cards" id="scoreCards" style="margin-top:14px"></div>
+    </details>
     <div id="dimSections"></div>
     <div class="raw-section">
       <button class="raw-toggle" onclick="toggleRaw()">Rohdaten anzeigen</button>
@@ -212,7 +216,7 @@ const DIMS = [
     ]
   },
   {
-    id:'rep', label:'Reputation', color:'var(--rep)', light:'rgba(26,39,68,0.07)', border:'rgba(26,39,68,0.2)',
+    id:'rep', label:'Reputation', color:'var(--rep)', light:'rgba(45,90,61,0.07)', border:'rgba(45,90,61,0.2)',
     questions:[
       "Ich habe ein klares Bild davon, wie ich von Mandanten und Kollegen wahrgenommen werde.",
       "Ich bin in meinen Fachgebieten als Experte bekannt — über meine eigene Kanzlei hinaus.",
@@ -408,6 +412,33 @@ function renderCoachResults(decoded){
   const kanzleiKontext = dimScores.find(d=>d.id==='kanzlei');
   const scoreDims = dimScores.filter(d=>!d.kontext);
 
+  // ── DIFFERENZIERUNGS-ANALYSE (Antwortverhalten) ──────────────────────────────
+  // Nur die persönlichen Score-Fragen (ohne Kanzlei-Kontext) betrachten.
+  const persAns = ALL_Q.map((q,i)=>({dimId:q.dimId,a:ans[i]}))
+                       .filter(q=>q.a>0 && !DIMS.find(d=>d.id===q.dimId).kontext)
+                       .map(q=>q.a);
+  const nTotal = persAns.length;
+  const counts = [1,2,3,4,5].map(v=>persAns.filter(a=>a===v).length);
+  const midShare = nTotal ? counts[2]/nTotal : 0;          // Anteil «3»
+  const extremeShare = nTotal ? (counts[0]+counts[4])/nTotal : 0; // Anteil «1» oder «5»
+  const mean = nTotal ? persAns.reduce((a,b)=>a+b,0)/nTotal : 0;
+  const sd = nTotal ? Math.sqrt(persAns.reduce((s,a)=>s+(a-mean)**2,0)/nTotal) : 0;
+
+  let diffLabel, diffText, diffTone;
+  if(midShare>=0.45){
+    diffLabel='Gering differenziert — Tendenz zur Mitte';
+    diffText=`${counts[2]} von ${nTotal} Antworten sind eine «3». Bei so starker Mitte-Tendenz bilden die Prozentwerte pro Dimension vor allem das Antwortverhalten ab, nicht die tatsächlichen Unterschiede. Aussagekräftig sind hier die wenigen bewussten Ausschläge nach oben und unten (siehe unten). Coaching-Ansatz: Im Gespräch klären, ob «3» ein bewusstes «mittel» war oder ein «kommt darauf an» / «will mich nicht festlegen».`;
+    diffTone='warn';
+  } else if(sd>=1.15){
+    diffLabel='Stark differenziert — klares Profil';
+    diffText=`Die Antworten streuen deutlich (Streuung ${sd.toFixed(1)}). Der Proband legt sich fest; die Dimensions-Scores und das Gefälle zwischen den Dimensionen sind belastbar interpretierbar.`;
+    diffTone='ok';
+  } else {
+    diffLabel='Moderat differenziert';
+    diffText=`Die Antworten zeigen erkennbare, aber nicht extreme Unterschiede (Streuung ${sd.toFixed(1)}). Dimensions-Scores als Orientierung brauchbar; den grössten Erkenntniswert liefern die Ausschläge nach oben und unten.`;
+    diffTone='mid';
+  }
+
   document.getElementById('scoreCards').innerHTML=
     // Kanzlei-Kontext Box zuerst (gold, kein "persönlicher Score")
     (kanzleiKontext ? `<div class="score-card" style="grid-column:1/-1;background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.3)">`
@@ -425,6 +456,31 @@ function renderCoachResults(decoded){
       +`<div class="sc-bar"><div class="sc-fill" style="width:${d.pct}%"></div></div>`
       +'</div>'
     ).join('');
+
+  // ── DIFFERENZIERUNGS-BLOCK rendern ───────────────────────────────────────────
+  const diffColors = {
+    warn: {bg:'rgba(200,168,75,0.10)', bd:'rgba(200,168,75,0.45)', ac:'#8a6f1a'},
+    mid:  {bg:'var(--light)',           bd:'var(--border)',          ac:'var(--navy)'},
+    ok:   {bg:'rgba(30,107,60,0.08)',  bd:'rgba(30,107,60,0.30)',   ac:'var(--green)'}
+  }[diffTone];
+  // Mini-Verteilung 1–5
+  const maxC = Math.max(...counts,1);
+  const distBars = counts.map((c,i)=>
+    `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">`
+    +`<div style="font-size:11px;font-weight:700;color:${i===2?diffColors.ac:'var(--muted)'}">${c}</div>`
+    +`<div style="width:100%;max-width:34px;height:${Math.round(6+c/maxC*46)}px;background:${i===2?diffColors.ac:'var(--muted)'};opacity:${i===2?1:0.35};border-radius:3px"></div>`
+    +`<div style="font-size:10px;color:var(--muted)">${i+1}</div>`
+    +'</div>'
+  ).join('');
+  document.getElementById('diffBlock').innerHTML=
+    `<div style="background:${diffColors.bg};border:1px solid ${diffColors.bd};border-radius:16px;padding:22px 24px">`
+    +`<div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:6px">`
+    +`<h3 style="font-family:'Cormorant Garamond',serif;font-size:20px;color:${diffColors.ac};margin:0">Antwortmuster: ${diffLabel}</h3>`
+    +`<span style="font-size:11px;color:var(--muted)">Ø ${mean.toFixed(1)} · Streuung ${sd.toFixed(1)} · ${nTotal} Fragen</span></div>`
+    +`<p style="font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:16px">${diffText}</p>`
+    +`<div style="display:flex;align-items:flex-end;gap:8px;max-width:280px">${distBars}</div>`
+    +`<div style="font-size:10px;color:var(--muted);margin-top:6px;max-width:280px;text-align:center">Verteilung der Antwortwerte (1 = trifft nicht zu … 5 = trifft voll zu)</div>`
+    +'</div>';
 
   // ── INTERPRETATION ──────────────────────────────────────────────────────────
   const rep=scoreDims.find(d=>d.id==='rep');
@@ -470,7 +526,7 @@ function renderCoachResults(decoded){
   document.getElementById('interpretation').innerHTML = hints.length===0
     ? ''
     : `<div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 26px">
-        <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:18px">Coach-Interpretationen</h3>`
+        <h3 style="font-family:'Cormorant Garamond', serif;font-size:18px;color:var(--navy);margin-bottom:18px">Coach-Interpretationen</h3>`
       + hints.map(h=>
         `<div style="display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid var(--border)">`
         +`<span style="font-size:20px;flex-shrink:0;margin-top:1px">${h.icon}</span>`
@@ -480,30 +536,42 @@ function renderCoachResults(decoded){
       + '</div>';
 
   // ── TOP / FLOP ───────────────────────────────────────────────────────────────
-  const allQ=ALL_Q.map((q,i)=>({...q,a:ans[i]||0,dim:DIMS.find(d=>d.id===q.dimId)}));
+  const allQ=ALL_Q.map((q,i)=>({...q,a:ans[i]||0,dim:DIMS.find(d=>d.id===q.dimId)}))
+                  .filter(q=>q.a>0 && !q.dim.kontext);
 
-  function buildList(targetScores, fallbackScores, title, color, icon){
-    let items=allQ.filter(q=>targetScores.includes(q.a));
-    if(items.length<3){
-      const extra=allQ.filter(q=>fallbackScores.includes(q.a)&&!items.includes(q));
-      items=[...items,...extra].slice(0,Math.max(items.length,3));
-    }
+  // Höchste und tiefste Werte relativ zum tatsächlichen Antwortbereich des Probanden
+  const maxVal = Math.max(...allQ.map(q=>q.a));
+  const minVal = Math.min(...allQ.map(q=>q.a));
+
+  function buildList(pick, title, subtitle, color, icon, ascending){
+    let items = allQ.filter(pick).sort((a,b)=> ascending ? a.a-b.a : b.a-a.a);
     if(items.length===0) return '';
+    const capped = items.slice(0,6);
+    const moreN = items.length - capped.length;
     return `<div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 18px">`
-      +`<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:${color};margin-bottom:12px">${icon} ${title}</div>`
-      +items.map(q=>
+      +`<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:${color};margin-bottom:2px">${icon} ${title}</div>`
+      +`<div style="font-size:11px;color:var(--muted);margin-bottom:12px">${subtitle}</div>`
+      +capped.map(q=>
         `<div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:0.5px solid var(--border)">`
         +`<span style="font-size:10px;font-weight:600;padding:2px 6px;border-radius:10px;background:${q.dim.light};color:${q.dim.color};flex-shrink:0;margin-top:1px">${q.dim.label}</span>`
         +`<span style="font-size:12px;color:var(--navy);flex:1;line-height:1.4">${q.q}</span>`
         +`<span style="font-size:12px;font-weight:700;color:${color};flex-shrink:0">${q.a}</span>`
         +'</div>'
       ).join('')
+      + (moreN>0 ? `<div style="font-size:11px;color:var(--muted);padding-top:10px">+ ${moreN} weitere auf diesem Niveau (siehe Dimensions-Details)</div>` : '')
       +'</div>';
   }
 
+  // Stärken = die höchsten Werte des Probanden (4–5, oder relativ höchste)
+  const staerkenPick = maxVal>=4 ? (q=>q.a>=4) : (q=>q.a===maxVal);
+  const staerkenSub = maxVal>=4 ? 'Höchste Selbsteinschätzung (4–5)' : `Relativ stärkste Punkte (Höchstwert ${maxVal})`;
+  // Entwicklungsfelder = die tiefsten Werte (1–2, oder relativ tiefste)
+  const lueckenPick = minVal<=2 ? (q=>q.a<=2) : (q=>q.a===minVal);
+  const lueckenSub = minVal<=2 ? 'Tiefste Selbsteinschätzung (1–2)' : `Relativ schwächste Punkte (Tiefstwert ${minVal})`;
+
   document.getElementById('topFlop').innerHTML=
-    buildList([5],[4],'Stärken','var(--green)','💪')
-    + buildList([1],[2],'Entwicklungsfelder','var(--red)','🎯');
+    buildList(staerkenPick,'Stärken',staerkenSub,'var(--green)','▲',false)
+    + buildList(lueckenPick,'Entwicklungsfelder',lueckenSub,'var(--red)','▼',true);
 
   // ── DIMENSION DETAILS ────────────────────────────────────────────────────────
   document.getElementById('dimSections').innerHTML=scoreDims.map(d=>
@@ -512,7 +580,7 @@ function renderCoachResults(decoded){
     +d.qs.map((q,qi)=>{
       const score=q.a||0;
       const pct=score/5*100;
-      const col=score>=4?d.color:score===3?'#6b7a99':'#c0392b';
+      const col=score>=4?d.color:score===3?'#6b6b65':'#c0392b';
       return `<div class="q-result-row">`
         +`<span style="font-size:11px;color:var(--muted);min-width:20px">${qi+1}</span>`
         +`<span class="q-result-text">${q.q}</span>`
